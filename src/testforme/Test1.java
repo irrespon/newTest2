@@ -18,6 +18,7 @@ public class Test1 {
                 " lastname Varchar(50), " +
                 " age integer not null, " +
                 "primary key (id))";
+
         String sql = "SELECT * FROM userTable";
         statement.executeUpdate(deleteTable);
         statement.executeUpdate(newSqlTable);
