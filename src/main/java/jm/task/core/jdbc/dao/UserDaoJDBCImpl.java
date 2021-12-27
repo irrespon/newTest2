@@ -35,8 +35,6 @@ public class UserDaoJDBCImpl implements UserDao {
             " lastname Varchar(50), " +
             " age int not null, " +
             " primary key (id))";
-    private String deleteTable = "drop table userTable";
-    private String sql = "SELECT * FROM userTable";
 
     public UserDaoJDBCImpl() {
 
@@ -54,7 +52,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
 
         try {
-            statement.executeUpdate(deleteTable);
+            statement.executeUpdate("drop table userTable");
         } catch (SQLException e) {
             System.err.println("не удалось удалить таблицу");
         }
@@ -87,7 +85,7 @@ public class UserDaoJDBCImpl implements UserDao {
         List<User> list = new ArrayList<>();
 
         try {
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM userTable");
             while (resultSet.next()) {
                 list.add(new User(resultSet.getString("name"), resultSet.getString("lastname"), resultSet.getByte("age")));
             }
