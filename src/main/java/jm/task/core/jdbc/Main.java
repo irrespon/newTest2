@@ -9,11 +9,11 @@ public class Main {
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
         userService.saveUser("Ivan", "Ivanov", (byte) 9);
-        //userService.saveUser("Ivan1", "Ivanov1", (byte) 14);
-        //userService.saveUser("Ivan2", "Ivanov2", (byte) 23);
-        //userService.saveUser("Ivan3", "Ivanov3", (byte) 55);
-        //userService.getAllUsers();
-        //userService.cleanUsersTable();
+        userService.saveUser("Ivan1", "Ivanov1", (byte) 14);
+        userService.saveUser("Ivan2", "Ivanov2", (byte) 23);
+        userService.saveUser("Ivan3", "Ivanov3", (byte) 55);
+        userService.getAllUsers();
+        userService.cleanUsersTable();
         userService.dropUsersTable();
         // реализуйте алгоритм здесь
     }
