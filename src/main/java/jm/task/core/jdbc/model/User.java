@@ -63,7 +63,7 @@ public class User {
     @Override
     public String toString() {
         return "User с именем - '" +
-                 name + '\'' +
+                name + '\'' +
                 ", фамилией - '" + lastName + '\'' +
                 ", возрастом - " + age + "\n";
     }

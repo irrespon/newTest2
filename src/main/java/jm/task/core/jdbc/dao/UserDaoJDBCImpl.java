@@ -18,7 +18,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     {
         try {
-            statement = Util.connectToDB(url,userName,pass);
+            statement = Util.connectToDB(url, userName, pass);
         } catch (ClassNotFoundException | SQLException e) {
             if (e.getClass().equals(ClassNotFoundException.class)) {
                 System.err.println("не удалось настроить драйвер");
@@ -89,7 +89,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                list.add(new User(resultSet.getString("name"),resultSet.getString("lastname"), resultSet.getByte("age")));
+                list.add(new User(resultSet.getString("name"), resultSet.getString("lastname"), resultSet.getByte("age")));
             }
         } catch (SQLException e) {
             System.err.println("не удалось получить список пользователей");
