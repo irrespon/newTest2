@@ -15,18 +15,8 @@ public class UserDaoJDBCImpl implements UserDao {
     private static String userName = "test";
     private static String pass = "secret";
     private String userTable = "userTable";
-   // private String userRaw =
     private Connection connection = Util.connectToDB(url,userName,pass);
     private Statement statement;
-
-    {
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     private String newSqlTable = "Create table " +
             userTable +
             " (id int(10) not null auto_increment, " +
@@ -36,6 +26,14 @@ public class UserDaoJDBCImpl implements UserDao {
             " primary key (id))";
     private String deleteTable = "drop table userTable";
     private String sql = "SELECT * FROM userTable";
+
+    {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public UserDaoJDBCImpl() {
 
@@ -62,9 +60,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
         String userRaw = "INSERT INTO " + userTable + "(name, lastname, age) VALUES ('" + name + "'" +  ", " + "'" + lastName + "'" + ", " + age + ")";
         try {
-            System.out.println(userRaw);
             statement.executeUpdate(userRaw);
             connection.commit();
+            System.out.println("Добавлен пользователь " + name);
         } catch (SQLException e) {
             System.err.println("не удалось добавить строку в таблицу " + userTable);
         }
@@ -72,6 +70,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
+        String deleteRaw = "Delete from " + userTable + " where id = " + id;
+        try {
+            statement.executeUpdate(deleteRaw);
+        } catch (SQLException e) {
+            System.err.println("не удалось удалить пользователя с id = " + id);
+        }
 
     }
 
@@ -85,10 +89,16 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             System.err.println("не удалось получить список пользователей");
         }
+        System.out.println(list);
         return list;
     }
 
     public void cleanUsersTable() {
+        try {
+            statement.executeUpdate("Delete from " + userTable);
+        } catch (SQLException e) {
+            System.err.println("не удалось очистить таблицу " + userTable);
+        }
 
     }
 }

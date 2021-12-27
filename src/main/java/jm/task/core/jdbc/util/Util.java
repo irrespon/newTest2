@@ -7,7 +7,9 @@ import java.sql.Statement;
 
 public class Util {
 
+
     public static Connection connectToDB(String url, String userName, String pass) {
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -18,7 +20,7 @@ public class Util {
         try {
             connection = DriverManager.getConnection(url,userName,pass);
         } catch (SQLException e) {
-            System.err.println("ошибка подключения к " + url);;
+            System.err.println("ошибка подключения к " + url);
         }
 
         try {
@@ -28,6 +30,7 @@ public class Util {
         }
 
         return connection;
+
     }
 
 
