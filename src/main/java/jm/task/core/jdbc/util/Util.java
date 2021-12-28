@@ -12,7 +12,5 @@ public class Util {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(url,userName,pass);
         return connection.createStatement();
-
     }
-    // реализуйте настройку соеденения с БД
 }
