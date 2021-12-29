@@ -21,7 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
 
-        try (Statement statement = Util.connectToDB(url, userName, pass)) {
+        try (Statement statement = Util.connectToDB(url, userName, pass).createStatement()) {
             statement.executeUpdate("Create table " +
                     userTable +
                     " (id int(10) not null auto_increment, " +
@@ -36,7 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
 
-        try (Statement statement = Util.connectToDB(url, userName, pass))
+        try (Statement statement = Util.connectToDB(url, userName, pass).createStatement())
         {
             statement.executeUpdate("drop table userTable");
         } catch (SQLException | ClassNotFoundException e) {
@@ -47,7 +47,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void saveUser(String name, String lastName, byte age) {
 
-        try (Statement statement = Util.connectToDB(url, userName, pass))
+        try (Statement statement = Util.connectToDB(url, userName, pass).createStatement())
         {
             statement.executeUpdate("INSERT INTO " + userTable + "(name, lastname, age) VALUES ('" +
                     name + "'" + ", " + "'" +
@@ -61,7 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void removeUserById(long id) {
 
-        try (Statement statement = Util.connectToDB(url, userName, pass)) {
+        try (Statement statement = Util.connectToDB(url, userName, pass).createStatement()) {
             statement.executeUpdate("Delete from " + userTable + " where id = " + id);
         } catch (SQLException | ClassNotFoundException e) {
             e.getMessage();
@@ -72,7 +72,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         List<User> list = new ArrayList<>();
 
-        try(Statement statement = Util.connectToDB(url, userName, pass)) {
+        try(Statement statement = Util.connectToDB(url, userName, pass).createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM userTable");
             while (resultSet.next()) {
                 list.add(new User(resultSet.getString("name"), resultSet.getString("lastname"), resultSet.getByte("age")));
@@ -86,7 +86,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void cleanUsersTable() {
 
-        try (Statement statement = Util.connectToDB(url, userName, pass)) {
+        try (Statement statement = Util.connectToDB(url, userName, pass).createStatement()) {
             statement.executeUpdate("Delete from " + userTable);
         } catch (SQLException | ClassNotFoundException e) {
             e.getMessage();

@@ -7,10 +7,8 @@ import java.sql.Statement;
 
 public class Util {
 
-    public static Statement connectToDB(String url, String userName, String pass) throws ClassNotFoundException, SQLException {
+    public static Connection connectToDB(String url, String userName, String pass) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(url,userName,pass);
-        return connection.createStatement();
+        return DriverManager.getConnection(url,userName,pass);
     }
 }
