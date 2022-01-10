@@ -1,14 +1,14 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.util.ManageConnectDB;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    Session session = Util.getSessionFactory().openSession();
+    Session session = ManageConnectDB.getSessionFactory().openSession();
     Transaction transaction = null;
 
     public UserDaoHibernateImpl() {

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class Util {
+public class ManageConnectDB {
 
     /*Hibernate*/
     private static SessionFactory sessionFactory;
